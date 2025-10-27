@@ -120,6 +120,8 @@ kubectl logs <pod-name>
 ### 📸 Step 7: Screenshots and Evidence
 Below are example screenshots captured during execution:
 <img width="1280" height="648" alt="image" src="https://github.com/user-attachments/assets/42fc104c-d298-40b1-bfa7-19a5453d0bdc" />
+<img width="1280" height="648" alt="image" src="https://github.com/user-attachments/assets/3ec4efc0-515c-4c29-bbe6-3fa13512a8b4" />
+
 
 ### 📁 Project Structure
 ```
