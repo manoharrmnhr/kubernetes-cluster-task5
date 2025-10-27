@@ -23,13 +23,28 @@ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+```
+## Verify installation:
+```bash
+minikube version
+kubectl version --client
+docker --version
+```
 
-🚀 Step 2: Start the Minikube Cluster
+### 🚀 Step 2: Start the Minikube Cluster
+# Start your Kubernetes cluster using Docker as the driver:
+```bash
 minikube start --driver=docker
+```
+Check cluster status:
+```bash
+minikube status
+kubectl config current-context
+```
 
-📦 Step 3: Create Deployment
-
+### 📦 Step 3: Create Deployment
 Create a file named deployment.yaml:
+```bash
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -49,17 +64,20 @@ spec:
         image: nginx
         ports:
         - containerPort: 80
-
-Apply it:
+```
+Apply the deployment:
+```bash
 kubectl apply -f deployment.yaml
-
-Verify:
+```
+Verify that your deployment and pods are running:
+```bash
 kubectl get deployments
 kubectl get pods
+```
 
-
-🌐 Step 4: Expose the App with a Service
-Create a file named service.yaml:
+### 🌐 Step 4: Expose the App with a Service
+Create a file named service.yaml with the following content:
+```bash
 apiVersion: v1
 kind: Service
 metadata:
@@ -72,21 +90,39 @@ spec:
   - port: 80
     targetPort: 80
     nodePort: 30007
-
+```
 Apply and check:
+```bash
 kubectl apply -f service.yaml
 kubectl get services
-
-Access the app:
+```
+Access the app in your browser:
+```bash
 minikube service myapp-service
+```
 
-📊 Step 5: Scale the Deployment
+### 📊 Step 5: Scale the Deployment
+Increase the number of replicas:
+```bash
 kubectl scale deployment myapp-deployment --replicas=4
 kubectl get pods
+```
+### 🧩 Step 6: Describe and View Logs
+To describe a pod:
+```bash
+kubectl describe pod <pod-name>
+```
+To view logs of a running pod:
+```bash
+kubectl logs <pod-name>
+```
 
-📸 Step 7: Screenshots and Evidence
+### 📸 Step 7: Screenshots and Evidence
+Below are example screenshots captured during execution:
 <img width="1280" height="648" alt="image" src="https://github.com/user-attachments/assets/42fc104c-d298-40b1-bfa7-19a5453d0bdc" />
 
+### 📁 Project Structure
+```
 kubernetes-cluster-task5/
 ├── README.md
 ├── deployment.yaml
@@ -99,16 +135,18 @@ kubernetes-cluster-task5/
     ├── kubectl_scale.png
     ├── kubectl_logs.png
     └── kubectl_describe_pod.png
+```
+### ✅ Summary
+| Step                       | Description                        | Status |
+| -------------------------- | ---------------------------------- | ------ |
+| Install Minikube & kubectl | Successfully installed             | ✅      |
+| Start Cluster              | Cluster created with Docker driver | ✅      |
+| Deploy Application         | Nginx app deployed via YAML        | ✅      |
+| Expose Service             | NodePort service created           | ✅      |
+| Verify Pods & Services     | Verified using kubectl commands    | ✅      |
+| Scale Deployment           | Increased replicas successfully    | ✅      |
+| Logs & Describe            | Retrieved pod details & logs       | ✅      |
 
-✅ Summary
-Step	Description	Status
-Install Minikube & kubectl	Successfully installed	✅
-Start Cluster	Cluster created with Docker driver	✅
-Deploy Application	Nginx app deployed via YAML	✅
-Expose Service	NodePort service created	✅
-Verify Pods & Services	Verified using kubectl commands	✅
-Scale Deployment	Increased replicas successfully	✅
-Logs & Describe	Retrieved pod details & logs	✅
 
 👨‍💻 Author
 
