@@ -32,7 +32,7 @@ docker --version
 ```
 
 ### 🚀 Step 2: Start the Minikube Cluster
-# Start your Kubernetes cluster using Docker as the driver:
+Start your Kubernetes cluster using Docker as the driver:
 ```bash
 minikube start --driver=docker
 ```
